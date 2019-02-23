@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "nodemon server/index.js",
-    "start": "webpack -d --watch",
-    "build": "webpack --mode production"
+    "start": "nodemon server/index.js",
+    "build": "webpack -d --watch",
+    "build:prod": "webpack --mode production",
+    "ssr": "webpack --config webpack.server.js --mode=development -w",
+    "ssr:start": "nodemon server/ssrIndex.js"
   },
   "keywords": [],
   "repository": {
@@ -21,10 +23,7 @@
   },
   "homepage": "https://github.com/stevenchung213/spa-portfolio#readme",
   "dependencies": {
-    "body-parser": "^1.18.3",
-    "cors": "^2.8.5",
     "express": "^4.16.4",
-    "jquery": "^3.3.1",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
     "styled-components": "^4.1.3"
@@ -36,6 +35,7 @@
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.5",
     "webpack": "^4.29.5",
-    "webpack-cli": "^3.2.3"
+    "webpack-cli": "^3.2.3",
+    "webpack-node-externals": "^1.7.2"
   }
 }

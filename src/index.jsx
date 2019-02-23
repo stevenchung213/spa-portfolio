@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDom from "react-dom";
-import Main from './Components/Main.jsx';
+import ReactDOM from "react-dom";
+import Main from './components/Main.jsx';
 
-ReactDom.render(<Main/>, document.getElementById('main'));
+ReactDOM.hydrate(<Main/>, document.getElementById('main'));
