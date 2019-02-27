@@ -1,0 +1,19 @@
+html, body {
+    height: 100vh;
+    width: 100vw;
+}
+
+#main #main-container {
+    height: 100vh;
+    width: 100vw;
+}
+
+#gateway-container #top-container {
+    height: 100vh;
+    width: 100vw;
+}
+
+/*.nav-link {*/
+    /*color: white !important;*/
+    /*font-size: 18px;*/
+/*}*/

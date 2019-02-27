@@ -5,30 +5,26 @@ const NavBar = () => {
   const navBarStyle = {
     position: 'fixed',
     width: '100%',
-    backgroundColor: 'white',
-    zIndex: 999999
+    backgroundColor: 'black',
+    opacity: '0.9',
+    zIndex: 999999,
   };
-
   const name = {
-    fontSize: '22px',
+    fontSize: '28px',
     fontFamily: 'Montserrat',
-    color: '#343a40',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    color: 'white'
   };
-
   const rightSideBar = {
-    textAlign: 'right'
+    textAlign: 'right',
   };
-
+  const NavLinks = {
+    color: 'white',
+    fontSize: '18px'
+  };
   const rightSideDropDown = {
     width: '200px',
     float: 'right',
-  };
-
-  const pointer = {
-    fontFamily: 'Montserrat',
-    color: '#343a40',
-    cursor: 'pointer'
   };
 
   return (
@@ -38,20 +34,19 @@ const NavBar = () => {
               aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
       </button>
-
       <div className="collapse navbar-collapse" id="navbarSupportedContent" style={rightSideBar}>
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
-            <a className="nav-link" href="#about" >ABOUT</a>
+            <a className="nav-link" href="#about" style={NavLinks}>ABOUT</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#tech" >TECH</a>
+            <a className="nav-link" href="#tech" style={NavLinks}>TECH</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#portfolio" >PORTFOLIO</a>
+            <a className="nav-link" href="#portfolio" style={NavLinks}>PORTFOLIO</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#contact" >CONTACT</a>
+            <a className="nav-link" href="#contact" style={NavLinks}>CONTACT</a>
           </li>
         </ul>
       </div>
