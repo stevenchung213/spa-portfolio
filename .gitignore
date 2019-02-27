@@ -2,3 +2,7 @@
 node_modules
 config
 .idea
+temp/*
+!temp/bundle.js
+!temp/index.html
+!temp/styles.css

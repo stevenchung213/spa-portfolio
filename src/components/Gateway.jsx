@@ -1,22 +1,15 @@
 import React from 'react';
 import NavBar from './NavBar.jsx';
 import Wallpaper from './Wallpaper.jsx';
-import Top from './Top.jsx';
-import styled from 'styled-components';
+import About from './About.jsx';
 
-const Gateway = (props) => {
-
-  const TopContainer = styled.div`
-    background-color: black;
-    height: 100%;
-    width: 100%;
-  `;
+const Gateway = ({user}) => {
 
   return (
     <div id='gateway-container'>
       <NavBar/>
       <Wallpaper/>
-      <TopContainer><Top age={props.age}/></TopContainer>
+      <About user={user}/>
     </div>
   )
 };

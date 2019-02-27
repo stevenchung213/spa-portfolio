@@ -1,44 +1,53 @@
 import React, {Component} from 'react';
-import Age from './Age.jsx';
+import User from './User.jsx';
 import Gateway from './Gateway.jsx';
 import styled from 'styled-components';
 
 export default class Main extends Component {
-  constructor () {
+  constructor() {
     super();
 
     this.state = {
       init: false,
-      adult: true,
+      guestName: '',
       view: ''
     };
   }
 
-  handleClick = (el) => {
-    if (el.target.name === 'ofAge') {
-      this.setState({adult: true, init: true});
-      console.log(this.state.adult);
-    } else {
-      this.setState({adult: false, init: true});
-      console.log(this.state.adult);
-    }
+  getUserName = (el) => {
+    this.setState({guestName: el.target.value});
   };
 
-  render () {
+  handleClick = (el) => {
+    this.setState({init: true});
+    this.forceUpdate();
+  };
 
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
+    return false;
+  }
+
+  render() {
+
+    const general = {
+      height: '100vh',
+      backgroundColor: 'black',
+      fontFamily: 'Montserrat, serif',
+    };
     const GatewayContainer = styled.div`
       background-color: black;
       height: 100vh;
-      width: 100vw;
     `;
 
     return (
-      <div id="main-container">
-        { !this.state.init &&
-          <Age onClick={this.handleClick}/>
+      <div id="main-container" style={general}>
+        {!this.state.init &&
+          <User onClick={this.handleClick} getUserName={this.getUserName}/>
         }
-        { this.state.init &&
-        <GatewayContainer><Gateway age={this.state.adult}/></GatewayContainer>
+        {this.state.init &&
+        <GatewayContainer>
+          <Gateway user={this.state.guestName}/>
+        </GatewayContainer>
         }
       </div>
     );
