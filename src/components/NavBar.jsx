@@ -51,7 +51,7 @@ export default class Navbar extends Component {
           <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
             <MDBNavbarNav right>
               <MDBNavItem>
-                <MDBNavLink to="#about">ABOUT</MDBNavLink>
+                <MDBNavLink to="#about-container">ABOUT</MDBNavLink>
               </MDBNavItem>
               <MDBNavItem>
                 <MDBNavLink to="#tech">TECH</MDBNavLink>
@@ -59,19 +59,6 @@ export default class Navbar extends Component {
               <MDBNavItem>
                 <MDBNavLink to="#projects">PROJECTS</MDBNavLink>
               </MDBNavItem>
-              {/*<MDBNavItem>*/}
-              {/*<MDBDropdown>*/}
-              {/*<MDBDropdownToggle nav caret>*/}
-              {/*<div className="d-none d-md-inline">Dropdown</div>*/}
-              {/*</MDBDropdownToggle>*/}
-              {/*<MDBDropdownMenu className="dropdown-default" right>*/}
-              {/*<MDBDropdownItem href="#!">Action</MDBDropdownItem>*/}
-              {/*<MDBDropdownItem href="#!">Another Action</MDBDropdownItem>*/}
-              {/*<MDBDropdownItem href="#!">Something else here</MDBDropdownItem>*/}
-              {/*<MDBDropdownItem href="#!">Something else here</MDBDropdownItem>*/}
-              {/*</MDBDropdownMenu>*/}
-              {/*</MDBDropdown>*/}
-              {/*</MDBNavItem>*/}
             </MDBNavbarNav>
             <MDBNavbarNav right>
               <MDBNavItem>
@@ -79,7 +66,7 @@ export default class Navbar extends Component {
                   <MDBDropdownToggle nav caret>
                     <MDBIcon icon="user"/>
                   </MDBDropdownToggle>
-                  <MDBDropdownMenu className="dropdown-default" right>
+                  <MDBDropdownMenu className="dropdown">
                     <MDBDropdownItem href="https://www.linkedin.com/in/stevenchung-213">
                       <MDBIcon fab icon="linkedin"/>  LinkedIn
                     </MDBDropdownItem>
@@ -88,6 +75,9 @@ export default class Navbar extends Component {
                     </MDBDropdownItem>
                     <MDBDropdownItem href="mailto:stevechung.213@gmail.com">
                       <MDBIcon far icon="envelope"/>  Gmail
+                    </MDBDropdownItem>
+                    <MDBDropdownItem href="https://s3-us-west-1.amazonaws.com/my.portfolio/sc_resume.pdf">
+                      <MDBIcon icon="file-pdf"/>  Résumé
                     </MDBDropdownItem>
                     {/*<MDBDropdownItem href="#!"></MDBDropdownItem>*/}
                   </MDBDropdownMenu>

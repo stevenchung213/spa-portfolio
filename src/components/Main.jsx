@@ -8,7 +8,7 @@ export default class Main extends Component {
     super();
 
     this.state = {
-      init: false,
+      init: true,
       guestName: '',
       view: ''
     };
@@ -18,13 +18,32 @@ export default class Main extends Component {
     this.setState({guestName: el.target.value});
   };
 
-  handleClick = (el) => {
+  handleClick = () => {
     this.setState({init: true});
     this.forceUpdate();
   };
 
+  handleKeyPress = (ev) => {
+    if (ev.key === 'Enter') {
+      this.setState({init: true});
+      this.forceUpdate();
+    }
+  };
+
   shouldComponentUpdate(nextProps, nextState, nextContext) {
     return false;
+  }
+
+  componentDidMount() {
+    let about = document.getElementById('about-container');
+    if (about  && location.href.includes('#about-container')) {
+      about.scrollIntoView({
+        // optional params
+        behaviour: 'smooth',
+        block: 'start',
+        inline: 'center'
+      });
+    }
   }
 
   render() {
@@ -42,7 +61,7 @@ export default class Main extends Component {
     return (
       <div id="main-container" style={general}>
         {!this.state.init &&
-          <User onClick={this.handleClick} getUserName={this.getUserName}/>
+          <User onClick={this.handleClick} getUserName={this.getUserName} onEnterKey={this.handleKeyPress}/>
         }
         {this.state.init &&
         <GatewayContainer>

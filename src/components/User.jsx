@@ -4,17 +4,23 @@ import {MDBInput} from "mdbreact";
 
 const User = (props) => {
 
-  const General = styled.div`
+  const Background = styled.div`
+    background-image: url("https://s3-us-west-1.amazonaws.com/my.portfolio/background2.png");
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
     height: 100vh;
     width: 100vw;
-    display: flex;
-    justify-content: center;
-    font-family: Montserrat, serif;
   `;
-  const Buttons = styled.div`
+  const Button = styled.div`
     display: flex;
     justify-content: center;
   `;
+  const userBox = {
+    display: 'flex',
+    justifyContent: 'center',
+  };
   const button = {
     borderRadius: 20,
     width: '10vw',
@@ -26,22 +32,22 @@ const User = (props) => {
   };
 
   return (
-    <General>
-      <div id='age-container'>
-        <form>
-          <label>
-            <MDBInput label="enter name" icon="user"
-                      onChange={props.getUserName}
-                      style={{marginTop: '35vh'}}/>
-          </label>
-          <Buttons>
-            <input type='button' value='submit'
-                   onClick={props.onClick}
-                   style={button}/>
-          </Buttons>
-        </form>
-      </div>
-    </General>
+    <Background>
+        <div id='user-container' style={userBox}>
+          <form style={{marginTop: '65vh'}}>
+            <label>
+              <MDBInput label="enter name" icon="user" size="lg"
+                        onChange={props.getUserName}
+                        onKeyPress={props.onEnterKey}/>
+            </label>
+            <Button>
+              <input type='button' value='submit'
+                     onClick={props.onClick}
+                     style={button}/>
+            </Button>
+          </form>
+        </div>
+    </Background>
   );
 };
 
