@@ -10,12 +10,13 @@ export default class Main extends Component {
     this.state = {
       init: true,
       guestName: '',
-      view: ''
+      isOpen: false,
+      project: ''
     };
   }
 
-  getUserName = (el) => {
-    this.setState({guestName: el.target.value});
+  getUserName = (e) => {
+    this.setState({guestName: e.target.value});
   };
 
   handleClick = () => {
@@ -23,11 +24,32 @@ export default class Main extends Component {
     this.forceUpdate();
   };
 
-  handleKeyPress = (ev) => {
-    if (ev.key === 'Enter') {
+  handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
       this.setState({init: true});
       this.forceUpdate();
     }
+  };
+
+  selectProject = (e) => {
+    if (e === 'Su Casa') {
+      this.setState({project: 'Su Casa'});
+    }
+    if (e === 'Zillwoah!') {
+      this.setState({project: 'Zillwoah!'});
+    }
+    if (e === 'My Map Pins') {
+      this.setState({project: 'My Map Pins'});
+    }
+    if (e === 'GitHub Repos') {
+      this.setState({project: 'GitHub Repos'});
+    }
+
+    this.setState({isOpen: true})
+  };
+
+  deSelectProject = () => {
+    this.setState({project: ''});
   };
 
   shouldComponentUpdate(nextProps, nextState, nextContext) {
@@ -36,7 +58,7 @@ export default class Main extends Component {
 
   componentDidMount() {
     let about = document.getElementById('about-container');
-    if (about  && location.href.includes('#about-container')) {
+    if (about && location.href.includes('#about-container')) {
       about.scrollIntoView({
         // optional params
         behaviour: 'smooth',
@@ -61,11 +83,14 @@ export default class Main extends Component {
     return (
       <div id="main-container" style={general}>
         {!this.state.init &&
-          <User onClick={this.handleClick} getUserName={this.getUserName} onEnterKey={this.handleKeyPress}/>
+        <User onClick={this.handleClick} getUserName={this.getUserName} onEnterKey={this.handleKeyPress}/>
         }
         {this.state.init &&
         <GatewayContainer>
-          <Gateway user={this.state.guestName}/>
+          <Gateway user={this.state.guestName}
+                   projectSelected={this.state.isOpen}
+                   clickProject={this.selectProject}
+                   deSelectProject={this.deSelectProject()} />
         </GatewayContainer>
         }
       </div>

@@ -1,15 +1,18 @@
 import React from 'react';
 
-const Filler = () => {
+const Filler = ({section}) => {
 
   const general = {
     height: '35vh',
     width: '100%',
-    backgroundColor: 'white'
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: '10%'
   };
 
   return (
-    <div id='filler-container' style={general}></div>
+    <div id={section.name} style={general}></div>
   );
 };
 
