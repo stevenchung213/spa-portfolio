@@ -54,7 +54,7 @@ const About = ({user}) => {
   };
 
   return (
-    <div id='about' style={general}>
+    <div id='about-container' style={general}>
       <div id='pic-container' style={picBox}>
         <img id='picture'
              src='https://s3-us-west-1.amazonaws.com/my.portfolio/profile.png'

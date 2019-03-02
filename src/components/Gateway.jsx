@@ -7,6 +7,9 @@ import Tech from './Tech.jsx';
 import Projects from './Projects.jsx';
 
 const Gateway = ({user, projectSelected, clickProject, deSelectProject}) => {
+  const about = {
+    name: 'about'
+  };
   const tech = {
     name: 'tech'
   };
@@ -20,6 +23,7 @@ const Gateway = ({user, projectSelected, clickProject, deSelectProject}) => {
     <div id='gateway-container'>
       <NavBar/>
       <Wallpaper/>
+      <Filler section={about}/>
       <About user={user}/>
       <Filler section={tech}/>
       <Tech/>
@@ -27,6 +31,7 @@ const Gateway = ({user, projectSelected, clickProject, deSelectProject}) => {
       <Projects projectSelected={projectSelected}
                 clickProject={clickProject}
                 deSelectProject={deSelectProject} />
+      <Filler section={contact}/>
     </div>
   )
 };

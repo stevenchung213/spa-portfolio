@@ -21,13 +21,11 @@ export default class Main extends Component {
 
   handleClick = () => {
     this.setState({init: true});
-    this.forceUpdate();
   };
 
   handleKeyPress = (e) => {
     if (e.key === 'Enter') {
       this.setState({init: true});
-      this.forceUpdate();
     }
   };
 
@@ -45,28 +43,12 @@ export default class Main extends Component {
       this.setState({project: 'GitHub Repos'});
     }
 
-    this.setState({isOpen: true})
+    this.setState({isOpen: true});
   };
 
   deSelectProject = () => {
-    this.setState({project: ''});
+    this.setState({isOpen: false, project: ''});
   };
-
-  shouldComponentUpdate(nextProps, nextState, nextContext) {
-    return false;
-  }
-
-  componentDidMount() {
-    let about = document.getElementById('about-container');
-    if (about && location.href.includes('#about-container')) {
-      about.scrollIntoView({
-        // optional params
-        behaviour: 'smooth',
-        block: 'start',
-        inline: 'center'
-      });
-    }
-  }
 
   render() {
 
@@ -90,7 +72,7 @@ export default class Main extends Component {
           <Gateway user={this.state.guestName}
                    projectSelected={this.state.isOpen}
                    clickProject={this.selectProject}
-                   deSelectProject={this.deSelectProject()} />
+                   deSelectProject={this.deSelectProject} />
         </GatewayContainer>
         }
       </div>
