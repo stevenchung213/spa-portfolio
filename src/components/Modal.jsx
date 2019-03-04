@@ -1,30 +1,23 @@
 import React, {Component} from 'react';
-import {MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter} from 'mdbreact';
-import $ from 'jquery';
+import ReactModal from 'react-modal';
+import {MDBBtn} from 'mdbreact';
+
 
 export default class Modal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      modal: false
+      showModal: false
     };
   }
 
-  toggle = () => {
-    this.setState({
-      modal: !this.state.modal
-    });
+  handleOpenModal = () => {
+    this.setState({showModal: true});
   };
 
-  componentDidMount() {
-    if (this.state.modal) {
-      $('.carousel-control-prev').addClass('anchor-disabled');
-      $('.carousel-control-next').addClass('anchor-disabled');
-    } else {
-      $('.carousel-control-prev').removeClass('anchor-disabled');
-      $('.carousel-control-next').removeClass('anchor-disabled');
-    }
-  }
+  handleCloseModal = () => {
+    this.setState({showModal: false});
+  };
 
   render() {
 
@@ -101,16 +94,23 @@ export default class Modal extends Component {
       justifyContent: 'center'
     };
     return (
-      <MDBContainer>
+      <div id='modal-container'>
         {/* BUTTON */}
-        <MDBBtn color="white" onClick={this.toggle}>More Info</MDBBtn>
+        <MDBBtn className='modal-button-open' color="white" onClick={this.handleOpenModal}>More Info</MDBBtn>
         {/* MODAL */}
-        <MDBModal isOpen={this.state.modal} toggle={this.toggle}
-                  animation='bottom' size='lg' centered={true} autoFocus={true}
-                  backdrop={true} fullHeight position='bottom'>
-          <MDBModalHeader toggle={this.toggle}>{project.name}</MDBModalHeader>
-          <MDBModalBody style={body}>
-            <img src={project.src} alt={project.name} style={image}/>
+        <ReactModal isOpen={this.state.showModal} shouldCloseOnEsc={true}
+                    shouldReturnFocusAfterClose={true} contentLabel="Minimal Modal Example"
+                    shouldCloseOnOverlayClick={true} ariaHideApp={true}
+        >
+          <div className='modal-header'>
+            <h4 className='h4-responsive pt-3'>
+              {project.name}
+            </h4>
+          </div>
+          <div className='modal-body' style={body}>
+            <div className='modal-image-container'>
+              <img src={project.src} alt={project.name} style={image}/>
+            </div>
             <div id='project-info'>
               <div id='tech-stack'>
                 <h5 className='h5-responsive' style={{marginBottom: '0.5em', marginTop: '1.5em', fontWeight: 700}}>
@@ -120,22 +120,23 @@ export default class Modal extends Component {
               </div>
               <div id='project-description'>
                 <ul id='project-description-list' style={list}>
-                {project.description.split('.').map(item => {
-                  return (
-                    <li className='project-description-list-item' style={listing}>
-                      {item}
-                    </li>
-                  )})}
+                  {project.description.split('.').map((item, i) => {
+                    return (
+                      <li className='project-description-list-item' key={'listing' + i} style={listing}>
+                        {item}
+                      </li>
+                    )
+                  })}
                 </ul>
               </div>
             </div>
-          </MDBModalBody>
-          <MDBModalFooter style={footer}>
-            <MDBBtn color="black" onClick={this.toggle}>Close</MDBBtn>
+          </div>
+          <div className='modal-footer' style={footer}>
+            <MDBBtn color="black" onClick={this.handleCloseModal}>Close</MDBBtn>
             <MDBBtn color="black" target="_blank" rel="noopener noreferrer" href={project.href}>View Code</MDBBtn>
-          </MDBModalFooter>
-        </MDBModal>
-      </MDBContainer>
+          </div>
+        </ReactModal>
+      </div>
     );
   }
 };

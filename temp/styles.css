@@ -101,7 +101,6 @@ div.dropdown-menu.show.dropdown a {
     height: 65vh;
     width: 100%;
     z-index: 9999 !important;
-    padding-top: 3vh;
     position: fixed;
     overflow: visible;
 }
@@ -120,12 +119,42 @@ li.project-description-list-item {
     font-size: 2vh !important
 }
 
-span.carousel-control-prev-icon {
-    width: 17vh !important;
-    height: 17vw !important;
-}
-span.carousel-control-next-icon {
-    width: 17vw !important;
-    height: 17vh !important;
-}
+/*span.carousel-control-prev-icon {*/
+    /*width: 17vh !important;*/
+    /*height: 17vw !important;*/
+/*}*/
+/*span.carousel-control-next-icon {*/
+    /*width: 17vw !important;*/
+    /*height: 17vh !important;*/
+/*}*/
 
+/*
+    CAROUSEL STYLES
+*/
+/*div.carousel.carousel-slider {*/
+    /*height: 65vh;*/
+/*}*/
+/*li.slide.selected {*/
+    /*background: transparent !important;*/
+/*}*/
+/*img.mx-auto.w-responsive {*/
+    /*width: 70% !important;*/
+/*}*/
+
+html {
+    overflow-x: hidden;
+}
+.ReactModal__Body--open {
+    overflow: hidden;
+}
+div.ReactModal__Content.ReactModal__Content--after-open {
+    height: auto;
+    width: auto;
+    display: block;
+    justify-content: center;
+    overflow-y: hidden;
+}
+div.modal-image-container {
+    height: auto !important;
+    width: auto !important;
+}

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {MDBCarousel, MDBCarouselInner, MDBCarouselItem, MDBView, MDBContainer} from "mdbreact";
+// import {MDBCarousel, MDBCarouselInner, MDBCarouselItem, MDBView, MDBContainer} from "mdbreact";
+import Slider from "react-slick";
 import Modal from './Modal.jsx';
 
 
@@ -8,7 +9,7 @@ export default class Projects extends Component {
     super(props);
   }
 
-    render() {
+  render() {
     const general = {
       height: 'auto',
       width: '100%',
@@ -51,6 +52,35 @@ export default class Projects extends Component {
 
     return (
       <div id='projects-container' style={general}>
+        <div style={titleBox}>
+          <h3 className='h3-responsive' style={{fontWeight: 900}}>
+            - SOME OF MY PROJECTS -
+          </h3>
+        </div>
+        <Slider>
+          {projects.map((project, i) =>
+            <div key={'project' + (i + 1)}>
+              <div className="w-responsive mx-auto">
+                <div className="w-auto">
+                  <img className="mx-auto w-responsive" src={project.src} alt={project.name}/>
+                </div>
+                <div className='w-responsive mx-auto text-center p-1 mt-1'>
+                  <h4 className="h4-responsive" style={{color: 'white'}}>{project.name}</h4>
+                  <p style={{color: 'white', marginBottom: 5}}>{project.description}</p>
+                  <Modal project={project.name}/>
+                </div>
+              </div>
+            </div>
+          )}
+        </Slider>
+      </div>
+    );
+  }
+};
+
+/*
+  return (
+      <div id='projects-container' style={general}>
         <MDBContainer>
           <div style={titleBox}>
             <h3 className='h3-responsive' style={{fontWeight: 900}}>
@@ -84,5 +114,4 @@ export default class Projects extends Component {
         </MDBContainer>
       </div>
     );
-  }
-};
+ */
