@@ -27,12 +27,12 @@
 /*
     COMPLETELY TRANSPARENT
 */
-#about, #tech, #projects, #contact {
+#about, #tech, #projects, #contact, .anchors {
     position: relative;
     z-index: 0;
     background-color: #FFF; /* Control the lightness and tone of the see-through effect */
 }
-#about:after, #tech:after, #projects:after, #contact:after {
+#about:after, #tech:after, #projects:after, #contact:after, .anchors:after {
     content: "";
     position: absolute;
     top: 0;
@@ -95,5 +95,37 @@ div.dropdown-menu.show.dropdown a {
 }
 
 /*
-    MDB GRID CSS FILE MISSING
+    MODAL SIZING
 */
+.modal-content {
+    height: 65vh;
+    width: 100%;
+    z-index: 9999 !important;
+    padding-top: 3vh;
+    position: fixed;
+    overflow: visible;
+}
+.modal-dialog.modal-lg.modal-full-height.modal-dialog-centered.modal-bottom {
+    width: auto;
+    max-width: 100%;
+}
+
+/*
+    ALL <p> TEXT RESPONSIVE
+*/
+p {
+    font-size: 2vh !important;
+}
+li.project-description-list-item {
+    font-size: 2vh !important
+}
+
+span.carousel-control-prev-icon {
+    width: 17vh !important;
+    height: 17vw !important;
+}
+span.carousel-control-next-icon {
+    width: 17vw !important;
+    height: 17vh !important;
+}
+
