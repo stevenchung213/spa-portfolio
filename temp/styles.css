@@ -152,9 +152,12 @@ div.ReactModal__Content.ReactModal__Content--after-open {
     width: auto;
     display: block;
     justify-content: center;
-    overflow-y: hidden;
+    overflow: hidden !important;
 }
 div.modal-image-container {
-    height: auto !important;
-    width: auto !important;
+    height: 100% !important;
+    width: 100% !important;
+}
+div.ReactModalPortal {
+    overflow-y: auto !important;
 }

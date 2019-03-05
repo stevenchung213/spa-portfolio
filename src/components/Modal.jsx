@@ -71,6 +71,10 @@ export default class Modal extends Component {
       verticalAlign: 'center',
       justifyContent: 'center'
     };
+    const bodyTop = {
+      display: 'flex',
+      justifyContent: 'center'
+    };
     const image = {
       float: 'left',
       height: 'auto',
@@ -81,13 +85,13 @@ export default class Modal extends Component {
       objectFit: 'contain',
     };
     const list = {
-      marginTop: '2em'
+      marginTop: '4vh',
+      paddingLeft: '2vw',
+
     };
     const listing = {
-      paddingLeft: '2em',
       textAlign: 'left',
       fontWeight: 600,
-      paddingRight: '2em'
     };
     const footer = {
       display: 'flex',
@@ -102,37 +106,39 @@ export default class Modal extends Component {
                     shouldReturnFocusAfterClose={true} contentLabel="Minimal Modal Example"
                     shouldCloseOnOverlayClick={true} ariaHideApp={true}
         >
-          <div className='modal-header'>
-            <h4 className='h4-responsive pt-3'>
+          <div className='modal-header' style={{display: 'flex', justifyContent: 'center'}}>
+            <h4 className='h4-responsive pt-3' style={{fontWeight: 700, textAlign: 'center'}}>
               {project.name}
             </h4>
           </div>
           <div className='modal-body' style={body}>
-            <div className='modal-image-container'>
-              <img src={project.src} alt={project.name} style={image}/>
-            </div>
-            <div id='project-info'>
-              <div id='tech-stack'>
-                <h5 className='h5-responsive' style={{marginBottom: '0.5em', marginTop: '1.5em', fontWeight: 700}}>
-                  Tech Stack
-                </h5>
-                <p style={{fontWeight: 600, paddingLeft: '1em', paddingRight: '1em'}}>{project.tech}</p>
+            <div className='modal-body-top' style={bodyTop}>
+              <div className='modal-image-container'>
+                <img src={project.src} alt={project.name} style={image}/>
               </div>
-              <div id='project-description'>
-                <ul id='project-description-list' style={list}>
-                  {project.description.split('.').map((item, i) => {
-                    return (
-                      <li className='project-description-list-item' key={'listing' + i} style={listing}>
-                        {item}
-                      </li>
-                    )
-                  })}
-                </ul>
+              <div className='modal-project-info' style={{overflowY: 'auto', paddingLeft: '1vw'}}>
+                <div className='modal-tech-stack'>
+                  <h5 className='h5-responsive' style={{textAlign: 'center', marginBottom: '0.5em', marginTop: '1.5em', fontWeight: 700}}>
+                    Tech Stack
+                  </h5>
+                  <p style={{fontWeight: 600, paddingLeft: '1em', paddingRight: '1em', textAlign: 'center'}}>{project.tech}</p>
+                </div>
+                <div className='modal-project-description'>
+                  <ul className='modal-project-description-list' style={list}>
+                    {project.description.split('.').map((item, i) => {
+                      return (
+                        <li className='project-description-list-item' key={'listing' + i} style={listing}>
+                          {item}
+                        </li>
+                      )
+                    })}
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
           <div className='modal-footer' style={footer}>
-            <MDBBtn color="black" onClick={this.handleCloseModal}>Close</MDBBtn>
+            <MDBBtn color="black" onClick={this.handleCloseModal} href='#projects-nav'>Close</MDBBtn>
             <MDBBtn color="black" target="_blank" rel="noopener noreferrer" href={project.href}>View Code</MDBBtn>
           </div>
         </ReactModal>

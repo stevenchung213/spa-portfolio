@@ -22,7 +22,9 @@ export default class Projects extends Component {
     const titleBox = {
       width: 'auto',
       display: 'flex',
+      flexDirection: 'column',
       padding: '1vh 1vw 1vh 1vw',
+      alignItems: 'center',
       justifyContent: 'center',
       color: 'white',
       marginBottom: 10
@@ -56,11 +58,15 @@ export default class Projects extends Component {
           <h3 className='h3-responsive' style={{fontWeight: 900}}>
             - SOME OF MY PROJECTS -
           </h3>
+          <p>
+            {'. . . drag left or right . . .'}
+          </p>
         </div>
-        <Slider>
+        <Slider adaptiveHeight={true} arrows={true} centerMode={true}
+                slidesToShow={2}>
           {projects.map((project, i) =>
             <div key={'project' + (i + 1)}>
-              <div className="w-responsive mx-auto">
+              <div className="w-responsive mx-auto" style={{paddingBottom: '1.5vh'}}>
                 <div className="w-auto">
                   <img className="mx-auto w-responsive" src={project.src} alt={project.name}/>
                 </div>

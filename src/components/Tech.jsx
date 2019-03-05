@@ -35,7 +35,7 @@ const Tech = () => {
       'https://s3-us-west-1.amazonaws.com/my.portfolio/mac.png']
   };
   const general = {
-    minHeight: '60vh',
+    minHeight: 'auto',
     height: 'auto',
     width: '100%',
     backgroundColor: 'white',
@@ -126,7 +126,7 @@ const Tech = () => {
   const icon = {
     display: 'flex',
     width: 'auto%',
-    height: '100%',
+    height: '80%',
     justifyContent: 'center',
     alignItems: 'center'
   };
