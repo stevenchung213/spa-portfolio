@@ -83,7 +83,7 @@ const About = ({user}) => {
             t g h j k l m n b jh g j r h e j th j k l k j n b v c x z a s d f g h j t r e w q s d f g h j k b.
           </p>
         </div>
-        <MDBBtn color="transparent" href='https://s3-us-west-1.amazonaws.com/my.portfolio/sc_resume.pdf'
+        <MDBBtn color="transparent" target="_blank" rel="noopener noreferrer" href='https://s3-us-west-1.amazonaws.com/my.portfolio/sc_resume.pdf'
                 style={button}>
           <MDBIcon icon="file-pdf" className="mr-xl-1-4"/> Résumé
         </MDBBtn>
