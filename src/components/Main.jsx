@@ -22,11 +22,22 @@ export default class Main extends Component {
 
   handleClick = () => {
     this.setState({init: true});
+    localStorage.setItem('user', this.state.guestName);
   };
 
   handleKeyPress = (e) => {
     if (e.key === 'Enter') {
       this.setState({init: true});
+    }
+  };
+
+  getLocalStorageUser = () => {
+    if (localStorage.hasOwnProperty('user')) {
+      let existingUser = localStorage.getItem('user');
+      this.setState({
+        guestName: existingUser,
+        init: true
+      });
     }
   };
 
@@ -54,6 +65,10 @@ export default class Main extends Component {
     return this.state.guestName === nextState.guestName;
   }
 
+  componentWillMount() {
+    this.getLocalStorageUser();
+  }
+
   render() {
 
     const general = {
@@ -73,16 +88,15 @@ export default class Main extends Component {
         }
         {
           this.state.init &&
-        <GatewayContainer>
-          <Gateway user={this.state.guestName}
-                   projectSelected={this.state.isOpen}
-                   project={this.state.project}
-                   selectProject={this.selectProject}
-                   deSelectProject={this.deSelectProject}/>
-          <div>
-
-          </div>
-        </GatewayContainer>
+          <GatewayContainer>
+            <Gateway user={this.state.guestName}
+                     projectSelected={this.state.isOpen}
+                     project={this.state.project}
+                     selectProject={this.selectProject}
+                     deSelectProject={this.deSelectProject}/>
+            <div>
+            </div>
+          </GatewayContainer>
         }
         {this.state.modal && <Modal/>}
 
