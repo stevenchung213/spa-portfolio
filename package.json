@@ -31,6 +31,7 @@
     "react": "^16.8.3",
     "react-anchor-link-smooth-scroll": "^1.0.11",
     "react-dom": "^16.8.3",
+    "react-loadable": "^5.5.0",
     "react-pose": "^4.0.8",
     "react-pose-text": "^3.1.0",
     "react-responsive-carousel": "^3.1.47",
