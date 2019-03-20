@@ -69,9 +69,22 @@ module.exports = {
       minRatio: 0.8
     }),
     new WorkboxPlugin.GenerateSW({
-      swDest: __dirname + '/src/pwa/serviceWorker.js',
+      swDest: __dirname + '/dist/service-worker.js',
       clientsClaim: true,
       skipWaiting: true,
+      include: [/\.html$/, /\.js$/, /\.css$/],
+      precacheManifestFilename: 'sc-manifest.[manifestHash].js',
+      cleanupOutdatedCaches: true,
+      runtimeCaching: [
+        {
+          urlPattern: new RegExp('/'),
+          handler: 'StaleWhileRevalidate'
+        },
+        // {
+        //   urlPattern: new RegExp('https://s3-us-west-1.amazonaws.com/my.portfolio/'),
+        //   handler: 'StaleWhileRevalidate'
+        // }
+      ]
     })
   ],
   output: {
