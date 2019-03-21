@@ -54,7 +54,7 @@ const Wallpaper = ({user, mobile}) => {
   };
   const intro = {
     borderRadius: '5rem',
-    background: 'white',
+    background: 'transparent',
     maxWidth: '100%',
     height: 'auto',
     width: 'auto',
@@ -97,7 +97,7 @@ const Wallpaper = ({user, mobile}) => {
           <Bounce bottom>
             <div id='down-arrow' style={arrow}>
               <AnchorLink href='#about-nav' aria-label="downArrow">
-                <MDBIcon icon="angle-double-down fa-6x" className='white-text'/>
+                <MDBIcon icon="angle-double-down fa-6x" className='black-text'/>
               </AnchorLink>
             </div>
           </Bounce>
