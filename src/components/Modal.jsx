@@ -92,8 +92,7 @@ export default class Modal extends Component {
         ' React * Webpack gzip compression, image compression and caching enabled for optimal loading speeds * ' +
         'Deployed using Github Pages with conditional React rendering * Service worker implemented for offline availability (currently' +
         ' disabled since Github Pages deployment does not support service' +
-        ' workers) * All image files hosted by S3 with caching enabled * Best viewed' +
-        ' on Chrome due to fixed transparent background',
+        ' workers) * All image files hosted by S3 with caching enabled * Designed for Chrome due to webp image format',
       href: 'https://github.com/stevenchung213/stevenchung213.github.io'
     };
 
