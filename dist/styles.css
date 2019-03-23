@@ -152,9 +152,9 @@ MOBILE VERSION SLIGHTLY TRANSPARENT
         bottom: 0;
         left: 0;
         z-index: -1;
-        background-image: url(https://s3-us-west-1.amazonaws.com/my.portfolio/png/city_skyline_mobile_device.jpg);
+        /*background-image: url(https://s3-us-west-1.amazonaws.com/my.portfolio/png/city_skyline_mobile_device.jpg);*/
         background-size: cover;
-        background-position: center;
+        background-position: center center;
         background-repeat: no-repeat;
         background-attachment: fixed;
         opacity: 0.1;
@@ -180,9 +180,9 @@ MOBILE VERSION COMPLETELY TRANSPARENT
         bottom: 0;
         left: 0;
         z-index: -1;
-        background-image: url(https://s3-us-west-1.amazonaws.com/my.portfolio/png/city_skyline_mobile_device.jpg);
+        /*background-image: url(https://s3-us-west-1.amazonaws.com/my.portfolio/png/city_skyline_mobile_device.jpg);*/
         background-size: cover;
-        background-position: center;
+        background-position: center center;
         background-repeat: no-repeat;
         background-attachment: fixed;
         opacity: 1;
