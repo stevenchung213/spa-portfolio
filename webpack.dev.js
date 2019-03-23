@@ -1,6 +1,4 @@
 const webpack = require('webpack'),
-  CompressionPlugin = require('compression-webpack-plugin'),
-  TerserPlugin = require('terser-webpack-plugin'),
   WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
@@ -42,41 +40,12 @@ module.exports = {
       }
     ]
   },
-  // optimization: {
-  //   minimizer: [
-  //     new TerserPlugin({
-  //       cache: true,
-  //       parallel: true,
-  //       sourceMap: false,
-  //     })
-  //   ],
-  //   namedModules: false,
-  //   namedChunks: false,
-  //   nodeEnv: 'production',
-  //   removeEmptyChunks: true,
-  //   flagIncludedChunks: true,
-  //   occurrenceOrder: true,
-  //   sideEffects: true,
-  //   usedExports: true,
-  //   concatenateModules: true,
-  //   noEmitOnErrors: true,
-  //   checkWasmTypes: true,
-  //   minimize: true,
-  // },
   plugins: [
-    // new webpack.DefinePlugin({
-    //   'process.env': {
-    //     'NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production')
-    //   }
-    // }),
-    // new webpack.optimize.AggressiveMergingPlugin(),
-    // new CompressionPlugin({
-    //   filename: "[path].gz[query]",
-    //   algorithm: "gzip",
-    //   test: /\.js$|\.css$|\.html$/,
-    //   threshold: 10240,
-    //   minRatio: 0.8
-    // }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production')
+      }
+    }),
     new webpack.HotModuleReplacementPlugin(),
     new WorkboxPlugin.GenerateSW({
       swDest: __dirname + '/dist/service-worker.js',
