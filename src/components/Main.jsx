@@ -1,9 +1,10 @@
 import React, {Component, Fragment} from 'react';
 import User from './User.jsx';
 import Gateway from './Gateway.jsx';
+import {hot} from 'react-hot-loader/root';
 
 
-export default class Main extends Component {
+class Main extends Component {
 
   state = {
     init: false,
@@ -66,3 +67,5 @@ export default class Main extends Component {
 
   }
 }
+
+export default hot(Main);

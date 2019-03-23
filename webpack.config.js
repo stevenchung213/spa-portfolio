@@ -1,10 +1,12 @@
 const webpack = require('webpack'),
   CompressionPlugin = require('compression-webpack-plugin'),
-  UglifyJsPlugin = require('uglifyjs-webpack-plugin'),
+  TerserPlugin = require('terser-webpack-plugin'),
   WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
-  entry: __dirname + '/src/index.jsx',
+  entry: ['webpack-dev-server/client?http://0.0.0.0:3000', // WebpackDevServer host and port
+    'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
+    __dirname + '/src/index.jsx'],
   module: {
     rules: [
       {
@@ -24,25 +26,40 @@ module.exports = {
       {
         test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf|svg)(\?[a-z0-9=.]+)?$/,
         loader: 'url-loader?limit=100000'
+      },
+      {
+        test: /\.(js|jsx)$/,
+        loader: require.resolve('babel-loader'),
+        include: __dirname + '/src',
+        options: {
+          cacheDirectory: true,
+          plugins: ['react-hot-loader/babel']
+        }
       }
     ]
   },
   optimization: {
     minimizer: [
-      new UglifyJsPlugin({
+      new TerserPlugin({
         cache: true,
         parallel: true,
-        uglifyOptions: {
-          compress: false,
-          ecma: 6,
-          mangle: true
-        },
-        sourceMap: true
+        sourceMap: false,
       })
+    //   new UglifyJsPlugin({
+    //     cache: true,
+    //     parallel: true,
+    //     uglifyOptions: {
+    //       compress: false,
+    //       ecma: 6,
+    //       mangle: true
+    //     },
+    //     sourceMap: true
+    //   })
     ],
     namedModules: false,
     namedChunks: false,
     nodeEnv: 'production',
+    removeEmptyChunks: true,
     flagIncludedChunks: true,
     occurrenceOrder: true,
     sideEffects: true,
@@ -66,30 +83,27 @@ module.exports = {
       threshold: 10240,
       minRatio: 0.8
     }),
-    new WorkboxPlugin.GenerateSW({
-      swDest: __dirname + '/dist/service-worker.js',
-      clientsClaim: true,
-      skipWaiting: true,
-      include: [/\.html$/, /\.js$/, /\.css$/],
-      precacheManifestFilename: 'sc-manifest.[manifestHash].js',
-      cleanupOutdatedCaches: true,
-      runtimeCaching: [
-        {
-          urlPattern: new RegExp('/'),
-          handler: 'StaleWhileRevalidate',
-          // options: {
-          //   expiration: {
-          //     maxEntries: 10,
-          //     maxAgeSeconds: 604800,
-          //   }
-          // }
-        },
-        // {
-        //   urlPattern: new RegExp('https://s3-us-west-1.amazonaws.com/my.portfolio/'),
-        //   handler: 'StaleWhileRevalidate'
-        // }
-      ]
-    })
+    new webpack.HotModuleReplacementPlugin(),
+    // new WorkboxPlugin.GenerateSW({
+    //   swDest: __dirname + '/dist/service-worker.js',
+    //   clientsClaim: true,
+    //   skipWaiting: true,
+    //   include: [/\.html$/, /\.js$/, /\.css$/],
+    //   precacheManifestFilename: 'sc-manifest.[manifestHash].js',
+    //   cleanupOutdatedCaches: true,
+    //   runtimeCaching: [
+    //     {
+    //       urlPattern: new RegExp('/'),
+    //       handler: 'StaleWhileRevalidate',
+    //       options: {
+    //         expiration: {
+    //           maxEntries: 3,
+    //           maxAgeSeconds: 604800,
+    //         }
+    //       }
+    //     },
+    //   ]
+    // })
   ],
   output: {
     filename: 'bundle.js',
