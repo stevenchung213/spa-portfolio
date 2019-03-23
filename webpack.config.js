@@ -1,7 +1,12 @@
 const webpack = require('webpack'),
   CompressionPlugin = require('compression-webpack-plugin'),
   TerserPlugin = require('terser-webpack-plugin'),
-  WorkboxPlugin = require('workbox-webpack-plugin');
+  WorkboxPlugin = require('workbox-webpack-plugin'),
+  ImageminPlugin = require("imagemin-webpack"),
+  imageminGifsicle = require("imagemin-gifsicle"),
+  imageminJpegtran = require("imagemin-jpegtran"),
+  imageminOptipng = require("imagemin-optipng"),
+  imageminSvgo = require("imagemin-svgo");
 
 module.exports = env => {
 
@@ -27,8 +32,26 @@ module.exports = env => {
           loader: 'style-loader!css-loader'
         },
         {
+          test: /\.(jpg|png|gif|svg)$/,
+          loader: 'image-webpack-loader',
+          enforce: 'pre'
+        },
+        {
           test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf|svg)(\?[a-z0-9=.]+)?$/,
-          loader: 'url-loader?limit=100000'
+          use: {
+            loader: 'url-loader',
+            options: {
+              limit: 10 * 1024
+            }
+          }
+        },
+        {
+          test: /\.svg$/,
+          loader: 'svg-url-loader',
+          options: {
+            limit: 10 * 1024,
+            noquotes: true,
+          }
         }
       ]
     },
@@ -55,6 +78,26 @@ module.exports = env => {
     },
     plugins: [
       new webpack.optimize.AggressiveMergingPlugin(),
+      new ImageminPlugin({
+        bail: false,
+        cache: true,
+        imageminOptions: {
+          plugins: [
+            imageminGifsicle({
+              interlaced: true
+            }),
+            imageminJpegtran({
+              progressive: true
+            }),
+            imageminOptipng({
+              optimizationLevel: 5
+            }),
+            imageminSvgo({
+              removeViewBox: true
+            })
+          ]
+        }
+      }),
       new CompressionPlugin({
         filename: "[path].gz[query]",
         algorithm: "gzip",
