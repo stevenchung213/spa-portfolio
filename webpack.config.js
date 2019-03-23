@@ -84,26 +84,20 @@ module.exports = {
       minRatio: 0.8
     }),
     new webpack.HotModuleReplacementPlugin(),
-    // new WorkboxPlugin.GenerateSW({
-    //   swDest: __dirname + '/dist/service-worker.js',
-    //   clientsClaim: true,
-    //   skipWaiting: true,
-    //   include: [/\.html$/, /\.js$/, /\.css$/],
-    //   precacheManifestFilename: 'sc-manifest.[manifestHash].js',
-    //   cleanupOutdatedCaches: true,
-    //   runtimeCaching: [
-    //     {
-    //       urlPattern: new RegExp('/'),
-    //       handler: 'StaleWhileRevalidate',
-    //       options: {
-    //         expiration: {
-    //           maxEntries: 3,
-    //           maxAgeSeconds: 604800,
-    //         }
-    //       }
-    //     },
-    //   ]
-    // })
+    new WorkboxPlugin.GenerateSW({
+      swDest: __dirname + '/dist/service-worker.js',
+      clientsClaim: true,
+      skipWaiting: true,
+      include: [/\.html$/, /\.js$/, /\.css$/],
+      precacheManifestFilename: 'sc-manifest.[manifestHash].js',
+      cleanupOutdatedCaches: true,
+      runtimeCaching: [
+        {
+          urlPattern: new RegExp('/'),
+          handler: 'StaleWhileRevalidate'
+        },
+      ]
+    })
   ],
   output: {
     filename: 'bundle.js',

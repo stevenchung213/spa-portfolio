@@ -8,6 +8,7 @@ import Main from './components/Main.jsx';
 import {AppContainer} from "react-hot-loader";
 
 const render = Component => {
+  console.log('**************** custom hot-loader render function running ****************');
   ReactDOM.render(
     <AppContainer>
       <Component />
@@ -23,3 +24,5 @@ if (module.hot) {
     render(Main);
   });
 }
+
+// ReactDOM.render(<Main/>, document.getElementById('main'));
