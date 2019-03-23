@@ -1,18 +1,149 @@
 import React, {Component} from 'react';
 
-const Data = React.createContext();
+const DataContext = React.createContext();
 
-export default class DataProvider extends Component {
+export class DataProvider extends Component {
 
   state = {
+    me: 'STEVEN CHUNG',
     about: {
       blurb: `I’m Steve, a Full Stack Software Engineer, and I have a passion for problem solving all things computer related.  I build polished, pixel-perfect full-stack applications using the latest industry technologies.  After years of hands-on computer hardware experience, I transitioned into software engineering and have been loving it ever since.  I am a self-taught, motivated individual with technical skills that span over more than a decade.`
+    },
+    contact: {
+      github: 'https://www.github.com/stevenchung213',
+      gmail: 'mailto:stevenchung.213@gmail.com',
+      linkedin: 'https://www.linkedin.com/in/stevenchung-213',
+      resume: 'https://s3-us-west-1.amazonaws.com/my.portfolio/steven_chung_resume.pdf'
+    },
+    images: {
+      profile: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/profile.png',
+      technologies: {
+        front: [
+          {
+            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/javascript.png',
+            tooltip: `JavaScript ES5 | ES6`
+          },
+          {
+            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/html5.png',
+            tooltip: `HTML5`
+          },
+          {
+            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/css3.png',
+            tooltip: `CSS3 | CSS Modules`
+          },
+          {
+            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/react.png',
+            tooltip: `React`
+          },
+          {
+            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/redux.png',
+            tooltip: `Redux`
+          },
+          {
+            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/bootstrap.png',
+            tooltip: `Bootstrap 4`
+          },
+          {
+            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/jquery.png',
+            tooltip: `jQuery`
+          }
+        ],
+        back: [
+          {
+            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/node.png',
+            tooltip: `Node.js`
+          },
+          {
+            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/express.png',
+            tooltip: `Express.js`
+          },
+          {
+            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/mongo.png',
+            tooltip: `MongoDB`
+          },
+          {
+            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/mongoose.png',
+            tooltip: `Mongoose`
+          },
+          {
+            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/postgresql.png',
+            tooltip: `PostgreSQL`
+          },
+          {
+            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/mysql.png',
+            tooltip: `MySQL`
+          },
+          {
+            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/cassandra.png',
+            tooltip: `Apache Cassandra`
+          },
+          {
+            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/restful.png',
+            tooltip: `RESTful Architecture`
+          }
+        ],
+        dev: [
+          {
+            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/aws.png',
+            tooltip: `AWS ECS | EBS | S3`
+          },
+          {
+            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/jest.png',
+            tooltip: `Jest`
+          },
+          {
+            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/enzyme.png',
+            tooltip: `Enzyme`
+          },
+          {
+            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/mocha.png',
+            tooltip: `Mocha`
+          },
+          {
+            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/chai.png',
+            tooltip: `Chai`
+          },
+          {
+            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/git.png',
+            tooltip: `Git`
+          },
+          {
+            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/github.png',
+            tooltip: `GitHub`
+          },
+          {
+            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/npm.png',
+            tooltip: `npm`
+          },
+          {
+            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/webpack.png',
+            tooltip: `webpack`
+          },
+          {
+            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/babel.png',
+            tooltip: `Babel`
+          },
+          {
+            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/windows.png',
+            tooltip: `Windows`
+          },
+          {
+            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/linux.png',
+            tooltip: `Linux`
+          },
+          {
+            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/mac.png',
+            tooltip: `macOS`
+          }]
+      }
     },
     projects: {
       sucasa: {
         name: 'Su Casa',
+        subtitle: 'Rental & Lodging App',
         caption: 'Rental & Lodging Application',
-        src: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/sucasa.png',
+        imgSm: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/sucasa-small.png',
+        imgLg: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/sucasa.png',
         tech: 'React | Node | Express | MongoDB | Mongoose | jQuery | AWS EBS | AWS S3 | Jest | Enzyme',
         description: 'Constructed a clean UI/UX experience while focusing on modularity via React *Optimized page load speeds from 3' +
           ' seconds to less than 1 second using image resizing/compression and minifying *Developed using Agile methodologies and tested' +
@@ -21,8 +152,10 @@ export default class DataProvider extends Component {
       },
       zillwoah: {
         name: 'Zillwoah!',
+        subtitle: 'Real Estate App',
         caption: 'Real Estate Application',
-        src: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/zillwoah.png',
+        imgSm: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/zillwoah-small.png',
+        imgLg: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/zillwoah.png',
         tech: 'React | Node | Express | PostgreSQL | CassandraDB | AWS EC2 | Nginx | K6 | New Relic | Loader.io',
         description: 'Efficiently scaled legacy codebase to handle 10 million records *' +
           'Created a seed script which randomly generated and populated PostgreSQL with 10 million records in less than 10 minutes;' +
@@ -34,8 +167,10 @@ export default class DataProvider extends Component {
       },
       mymappins: {
         name: 'My Map Pins',
+        subtitle: 'App using Google Maps API',
         caption: 'Save your own labeled marker on Google Maps',
-        src: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/mappins.png',
+        imgSm: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/mappins-small.png',
+        imgLg: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/mappins.png',
         tech: 'React | Node | Express | MongoDB | Mongoose | jQuery | Bootstrap | Google Maps API',
         description: 'MVP application designed with Bootstrap in the front end *' + 'Rendered maps utilizing the Google-Maps-React library' +
           ' along with Google Maps API *Added functionality for user to attach a note to specified geographical Markers *' + "Saved" +
@@ -44,8 +179,10 @@ export default class DataProvider extends Component {
       },
       repofetcher: {
         name: 'Github Repo Fetcher',
+        subtitle: 'App using Github API',
         caption: 'Retrieve all repos of a Github user',
-        src: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/repofetcher.png',
+        imgSm: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/repofetcher-small.png',
+        imgLg: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/repofetcher.png',
         tech: 'React | Node | Express | MongoDB | Mongoose | jQuery | Bootstrap | GitHub API',
         description: 'Designed a clean interface for users to search for and display a Github user\'s repos *' +
           'Saves all user\'s repos to MongoDB *' +
@@ -54,8 +191,10 @@ export default class DataProvider extends Component {
       },
       portfolio: {
         name: 'Personal Site',
+        subtitle: 'My Portfolio Site',
         caption: 'Portfolio',
-        src: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/portfolio.png',
+        imgSm: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/portfolio-small.png',
+        imgLg: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/portfolio.png',
         tech: 'React | Node | Express | Material Design Bootstrap | Responsive Design | AWS S3 | Github Pages',
         description: 'Front end bootstrapped using Material Design' +
           ' for' +
@@ -70,9 +209,11 @@ export default class DataProvider extends Component {
 
   render() {
     return (
-      <Data.Provider>
+      <DataContext.Provider value={this.state}>
         {this.props.children}
-      </Data.Provider>
+      </DataContext.Provider>
     );
   }
 }
+
+export default DataContext;
