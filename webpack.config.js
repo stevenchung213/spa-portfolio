@@ -4,6 +4,7 @@ const webpack = require('webpack'),
   WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
+  mode: 'development',
   entry: ['webpack-dev-server/client?http://0.0.0.0:3000',
     'webpack/hot/only-dev-server',
     __dirname + '/src/index.jsx'],

@@ -8,7 +8,7 @@ import Main from './components/Main.jsx';
 import {AppContainer} from "react-hot-loader";
 
 const render = Component => {
-  console.log('**************** custom hot-loader render function running ****************');
+
   ReactDOM.render(
     <AppContainer>
       <Component />

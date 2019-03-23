@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 
-const DataContext = React.createContext();
+export const DataContext = React.createContext();
 
-export class DataProvider extends Component {
+export default class DataProvider extends Component {
 
   state = {
     me: 'STEVEN CHUNG',
@@ -15,128 +15,7 @@ export class DataProvider extends Component {
       linkedin: 'https://www.linkedin.com/in/stevenchung-213',
       resume: 'https://s3-us-west-1.amazonaws.com/my.portfolio/steven_chung_resume.pdf'
     },
-    images: {
-      profile: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/profile.png',
-      technologies: {
-        front: [
-          {
-            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/javascript.png',
-            tooltip: `JavaScript ES5 | ES6`
-          },
-          {
-            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/html5.png',
-            tooltip: `HTML5`
-          },
-          {
-            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/css3.png',
-            tooltip: `CSS3 | CSS Modules`
-          },
-          {
-            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/react.png',
-            tooltip: `React`
-          },
-          {
-            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/redux.png',
-            tooltip: `Redux`
-          },
-          {
-            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/bootstrap.png',
-            tooltip: `Bootstrap 4`
-          },
-          {
-            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/jquery.png',
-            tooltip: `jQuery`
-          }
-        ],
-        back: [
-          {
-            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/node.png',
-            tooltip: `Node.js`
-          },
-          {
-            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/express.png',
-            tooltip: `Express.js`
-          },
-          {
-            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/mongo.png',
-            tooltip: `MongoDB`
-          },
-          {
-            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/mongoose.png',
-            tooltip: `Mongoose`
-          },
-          {
-            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/postgresql.png',
-            tooltip: `PostgreSQL`
-          },
-          {
-            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/mysql.png',
-            tooltip: `MySQL`
-          },
-          {
-            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/cassandra.png',
-            tooltip: `Apache Cassandra`
-          },
-          {
-            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/restful.png',
-            tooltip: `RESTful Architecture`
-          }
-        ],
-        dev: [
-          {
-            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/aws.png',
-            tooltip: `AWS ECS | EBS | S3`
-          },
-          {
-            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/jest.png',
-            tooltip: `Jest`
-          },
-          {
-            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/enzyme.png',
-            tooltip: `Enzyme`
-          },
-          {
-            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/mocha.png',
-            tooltip: `Mocha`
-          },
-          {
-            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/chai.png',
-            tooltip: `Chai`
-          },
-          {
-            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/git.png',
-            tooltip: `Git`
-          },
-          {
-            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/github.png',
-            tooltip: `GitHub`
-          },
-          {
-            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/npm.png',
-            tooltip: `npm`
-          },
-          {
-            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/webpack.png',
-            tooltip: `webpack`
-          },
-          {
-            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/babel.png',
-            tooltip: `Babel`
-          },
-          {
-            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/windows.png',
-            tooltip: `Windows`
-          },
-          {
-            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/linux.png',
-            tooltip: `Linux`
-          },
-          {
-            url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/mac.png',
-            tooltip: `macOS`
-          }]
-      }
-    },
+    profileImg: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/profile.png',
     projects: {
       sucasa: {
         name: 'Su Casa',
@@ -204,6 +83,125 @@ export class DataProvider extends Component {
           ' workers) *All image files hosted by S3 with caching enabled * Designed for Chrome',
         href: 'https://github.com/stevenchung213/stevenchung213.github.io'
       }
+    },
+    technologies: {
+      front: [
+        {
+          url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/javascript.png',
+          tooltip: `JavaScript ES5 | ES6`
+        },
+        {
+          url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/html5.png',
+          tooltip: `HTML5`
+        },
+        {
+          url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/css3.png',
+          tooltip: `CSS3 | CSS Modules`
+        },
+        {
+          url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/react.png',
+          tooltip: `React`
+        },
+        {
+          url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/redux.png',
+          tooltip: `Redux`
+        },
+        {
+          url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/bootstrap.png',
+          tooltip: `Bootstrap 4`
+        },
+        {
+          url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/jquery.png',
+          tooltip: `jQuery`
+        }
+      ],
+      back: [
+        {
+          url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/node.png',
+          tooltip: `Node.js`
+        },
+        {
+          url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/express.png',
+          tooltip: `Express.js`
+        },
+        {
+          url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/mongo.png',
+          tooltip: `MongoDB`
+        },
+        {
+          url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/mongoose.png',
+          tooltip: `Mongoose`
+        },
+        {
+          url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/postgresql.png',
+          tooltip: `PostgreSQL`
+        },
+        {
+          url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/mysql.png',
+          tooltip: `MySQL`
+        },
+        {
+          url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/cassandra.png',
+          tooltip: `Apache Cassandra`
+        },
+        {
+          url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/restful.png',
+          tooltip: `RESTful Architecture`
+        }
+      ],
+      dev: [
+        {
+          url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/aws.png',
+          tooltip: `AWS ECS | EBS | S3`
+        },
+        {
+          url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/jest.png',
+          tooltip: `Jest`
+        },
+        {
+          url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/enzyme.png',
+          tooltip: `Enzyme`
+        },
+        {
+          url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/mocha.png',
+          tooltip: `Mocha`
+        },
+        {
+          url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/chai.png',
+          tooltip: `Chai`
+        },
+        {
+          url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/git.png',
+          tooltip: `Git`
+        },
+        {
+          url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/github.png',
+          tooltip: `GitHub`
+        },
+        {
+          url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/npm.png',
+          tooltip: `npm`
+        },
+        {
+          url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/webpack.png',
+          tooltip: `webpack`
+        },
+        {
+          url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/babel.png',
+          tooltip: `Babel`
+        },
+        {
+          url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/windows.png',
+          tooltip: `Windows`
+        },
+        {
+          url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/linux.png',
+          tooltip: `Linux`
+        },
+        {
+          url: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/mac.png',
+          tooltip: `macOS`
+        }]
     }
   };
 
@@ -215,5 +213,3 @@ export class DataProvider extends Component {
     );
   }
 }
-
-export default DataContext;
