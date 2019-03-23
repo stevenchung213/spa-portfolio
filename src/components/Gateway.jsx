@@ -12,21 +12,21 @@ import Contact from './Contact.jsx';
 const Gateway = ({user, mobile}) => {
 
   return (
-      <div id='gateway-container'>
-        <NavBar/>
-        <Wallpaper user={user} mobile={mobile}/>
-        <Anchor section={'about'}/>
-        <About user={user}/>
-        <Filler section={'tech'}/>
-        <Anchor section={'tech'}/>
-        <Tech/>
-        <Filler section={'projects'}/>
-        <Anchor section={'projects'}/>
-        <Projects/>
-        <Filler section={'contact'}/>
-        <Anchor section={'contact'}/>
-        <Contact/>
-      </div>
+    <div id='gateway-container'>
+      <NavBar/>
+      <Wallpaper user={user} mobile={mobile}/>
+      <Anchor section={'about'}/>
+      <About user={user}/>
+      <Filler section={'tech'}/>
+      <Anchor section={'tech'}/>
+      <Tech/>
+      <Filler section={'projects'}/>
+      <Anchor section={'projects'}/>
+      <Projects/>
+      <Filler section={'contact'}/>
+      <Anchor section={'contact'}/>
+      <Contact/>
+    </div>
   )
 };
 

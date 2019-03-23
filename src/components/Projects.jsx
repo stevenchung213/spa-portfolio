@@ -2,6 +2,7 @@ import React from 'react';
 import {Carousel} from 'react-responsive-carousel';
 import Modal from './Modal.jsx';
 import {Fade, Slide} from 'react-reveal';
+import Jump from 'react-reveal/Jump';
 import Zoom from 'react-reveal/Zoom';
 import posed from "react-pose";
 import SplitText from "react-pose-text";
