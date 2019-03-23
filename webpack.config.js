@@ -4,8 +4,8 @@ const webpack = require('webpack'),
   WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
-  entry: ['webpack-dev-server/client?http://0.0.0.0:3000', // WebpackDevServer host and port
-    'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
+  entry: ['webpack-dev-server/client?http://0.0.0.0:3000',
+    'webpack/hot/only-dev-server',
     __dirname + '/src/index.jsx'],
   module: {
     rules: [
@@ -45,16 +45,6 @@ module.exports = {
         parallel: true,
         sourceMap: false,
       })
-    //   new UglifyJsPlugin({
-    //     cache: true,
-    //     parallel: true,
-    //     uglifyOptions: {
-    //       compress: false,
-    //       ecma: 6,
-    //       mangle: true
-    //     },
-    //     sourceMap: true
-    //   })
     ],
     namedModules: false,
     namedChunks: false,
