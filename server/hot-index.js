@@ -4,7 +4,7 @@ var https = require('https');
 const path = require('path');
 const compression = require('compression');
 const WebpackDevServer = require('webpack-dev-server');
-const config = require('../webpack.config.js');
+const config = require('../webpack.dev.js');
 const webpack = require('webpack');
 
 const port = 3000;
@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
 new WebpackDevServer(webpack(config), {
   contentBase: __dirname +'/../dist',
   hot: true,
-  historyApiFallback: true
+  historyApiFallback: true,
 }).listen(port, 'localhost', function (err, result) {
   if (err) {
     return console.log(err);
