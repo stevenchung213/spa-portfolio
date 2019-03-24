@@ -8,7 +8,8 @@ const webpack = require('webpack'),
   imageminOptipng = require("imagemin-optipng"),
   imageminSvgo = require("imagemin-svgo"),
   MiniCssExtractPlugin = require('mini-css-extract-plugin'),
-  OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+  OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin"),
+  CssNano = require('cssnano');
 
 module.exports = env => {
 
@@ -24,7 +25,16 @@ module.exports = env => {
           parallel: true,
           sourceMap: false,
         }),
-        new OptimizeCSSAssetsPlugin({})
+        new OptimizeCSSAssetsPlugin({
+          cssProcessor: CssNano,
+          cssProcessorOptions: {
+            discardComments: {
+              removeAll: true
+            },
+            safe: true
+          },
+          canPrint: false
+        })
       ],
     },
     plugins: [
@@ -82,7 +92,8 @@ module.exports = env => {
           use: {
             loader: 'babel-loader',
             options: {
-              presets: ['@babel/preset-react', '@babel/preset-env']
+              presets: ['@babel/preset-react', '@babel/preset-env'],
+              cacheDirectory: true
             }
           }
         },
@@ -122,7 +133,19 @@ module.exports = env => {
               name: 'sc'
             }
           }
-        }
+        },
+        // {
+        //   test: /(\.woff|\.woff2)$/,
+        //   loader: 'url?name=font/[name].[ext]&limit=10240&mimetype=application/font-woff'
+        // },
+        // {
+        //   test: /\.ttf$/,
+        //   loader: 'ignore-loader'
+        // },
+        // {
+        //   test: /\.eot$/,
+        //   loader: 'ignore-loader'
+        // }
       ]
     },
     output: {
