@@ -122,19 +122,7 @@ module.exports = env => {
               name: 'sc'
             }
           }
-        },
-        // {
-        //   test: /(\.woff|\.woff2)$/,
-        //   loader: 'url?name=font/[name].[ext]&limit=10240&mimetype=application/font-woff'
-        // },
-        // {
-        //   test: /\.ttf$/,
-        //   loader: 'ignore-loader'
-        // },
-        // {
-        //   test: /\.eot$/,
-        //   loader: 'ignore-loader'
-        // }
+        }
       ]
     },
     output: {
