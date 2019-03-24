@@ -50,8 +50,6 @@ module.exports = env => {
         }
       }),
       new MiniCssExtractPlugin({
-        // Options similar to the same options in webpackOptions.output
-        // both options are optional
         filename: "styles.css"
       }),
       new CompressionPlugin({
@@ -91,7 +89,7 @@ module.exports = env => {
         {
           test: /\.(sa|sc|c)ss$/,
           use: [
-           MiniCssExtractPlugin.loader,
+            MiniCssExtractPlugin.loader,
             'css-loader',
             'sass-loader'
           ],
@@ -105,11 +103,21 @@ module.exports = env => {
               name: '[name].[ext]'
             }
           }
+        },
+        {
+          test: /\.bundle\.js$/,
+          use: {
+            loader: 'bundle-loader',
+            options: {
+              name: 'sc'
+            }
+          }
         }
       ]
     },
     output: {
-      filename: 'bundle.js',
+      filename: '[name]_bundle.js',
+      chunkFilename: '[id]_bundle.js',
       path: __dirname + '/dist'
     }
   }

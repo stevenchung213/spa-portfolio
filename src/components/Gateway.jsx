@@ -1,12 +1,7 @@
 import React from 'react';
-// import NavBar from './NavBar.jsx';
 import Wallpaper from './Wallpaper.jsx';
 import Anchor from './Anchor.jsx';
-// import About from './About.jsx';
 import Filler from './Filler.jsx';
-// import Tech from './Tech.jsx';
-// import Projects from './Projects.jsx';
-// import Contact from './Contact.jsx';
 import Loadable from 'react-loadable';
 import ReactLoading from './Loading.jsx';
 
@@ -15,7 +10,8 @@ const LoadableNavBar = Loadable({
     loader: () => import(`./NavBar.jsx`),
     loading() {
         return <ReactLoading/>
-    }
+    },
+    delay: 3000
 });
 
 const LoadableAbout = Loadable({
