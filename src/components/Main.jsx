@@ -1,8 +1,8 @@
 import React, {Component, Fragment} from 'react';
-import DataProvider from '../providers/Data.jsx';
 import User from './User.jsx';
 import Gateway from './Gateway.jsx';
 import {hot} from 'react-hot-loader/root';
+
 
 class Main extends Component {
 
@@ -38,6 +38,12 @@ class Main extends Component {
     }
   };
 
+  checkWindowSize = () => {
+    this.setState({
+      mobile: window.innerWidth < window.innerHeight
+    });
+  };
+
   shouldComponentUpdate(nextProps, nextState, nextContext) {
     return this.state.guestName === nextState.guestName;
   }
@@ -48,20 +54,17 @@ class Main extends Component {
 
   render() {
     return (
-      <DataProvider>
-        <Fragment>
-          {
-            !this.state.init &&
-            <User onClick={this.handleClick} getUserName={this.getUserName}
-                  onEnterKey={this.handleKeyPress}/>
-          }
-          {
-            this.state.init &&
-            <Gateway user={this.state.guestName} mobile={this.state.mobile}/>
-          }
-        </Fragment>
-      </DataProvider>
-    )
+      <Fragment>
+        {
+          !this.state.init &&
+          <User onClick={this.handleClick} getUserName={this.getUserName} onEnterKey={this.handleKeyPress}/>
+        }
+        {
+          this.state.init &&
+          <Gateway user={this.state.guestName} mobile={this.state.mobile}/>
+        }
+      </Fragment>)
+
   }
 }
 
