@@ -50,15 +50,13 @@ module.exports = env => {
         }
       }),
       new MiniCssExtractPlugin({
-        // Options similar to the same options in webpackOptions.output
-        // both options are optional
         filename: "styles.css"
       }),
       new CompressionPlugin({
         filename: "[path].gz[query]",
         algorithm: "gzip",
         test: /\.js$|\.css$|\.html$/,
-        threshold: 10240,
+        threshold: 8192,
         minRatio: 0.8
       }),
       new WorkboxPlugin.GenerateSW({
@@ -66,7 +64,7 @@ module.exports = env => {
         clientsClaim: true,
         skipWaiting: true,
         include: [/\.html$/, /\.js$/, /\.css$/],
-        precacheManifestFilename: 'sc-manifest.[manifestHash].js',
+        precacheManifestFilename: '/assets/sc-manifest.[manifestHash].js',
         cleanupOutdatedCaches: true,
         runtimeCaching: [
           {
@@ -91,25 +89,45 @@ module.exports = env => {
         {
           test: /\.(sa|sc|c)ss$/,
           use: [
-           MiniCssExtractPlugin.loader,
+            MiniCssExtractPlugin.loader,
             'css-loader',
             'sass-loader'
           ],
         },
         {
-          test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf|svg)(\?[a-z0-9=.]+)?$/,
+          test: /\.(woff|woff2|eot|ttf)(\?[a-z0-9=.]+)?$/,
           use: {
             loader: 'url-loader',
             options: {
               limit: 10 * 1024,
-              name: '[name].[ext]'
+              name: '/fonts/[name].[ext]'
+            }
+          }
+        },
+        {
+          test: /\.(jpe?g|png|gif|svg)(\?[a-z0-9=.]+)?$/,
+          use: {
+            loader: 'url-loader',
+            options: {
+              limit: 10 * 1024,
+              name: '/img/[name].[ext]'
+            }
+          }
+        },
+        {
+          test: /\.bundle\.js$/,
+          use: {
+            loader: 'bundle-loader',
+            options: {
+              name: 'sc'
             }
           }
         }
       ]
     },
     output: {
-      filename: 'bundle.js',
+      filename: '[name]_bundle.js',
+      chunkFilename: '[id]_bundle.js',
       path: __dirname + '/dist'
     }
   }

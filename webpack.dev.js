@@ -58,12 +58,21 @@ module.exports = {
           cacheDirectory: true,
           plugins: ['react-hot-loader/babel']
         }
+      },
+      {
+        test: /\.bundle\.js$/,
+        use: {
+          loader: 'bundle-loader',
+          options: {
+            name: 'sc'
+          }
+        }
       }
     ]
   },
   output: {
-    filename: 'bundle.js',
+    filename: '[name]_bundle.js',
+    chunkFilename: '[id]_bundle.js',
     path: __dirname + '/dist'
   }
 };
-
