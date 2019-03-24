@@ -56,7 +56,7 @@ module.exports = env => {
         filename: "[path].gz[query]",
         algorithm: "gzip",
         test: /\.js$|\.css$|\.html$/,
-        threshold: 10240,
+        threshold: 8192,
         minRatio: 0.8
       }),
       new WorkboxPlugin.GenerateSW({
@@ -64,7 +64,7 @@ module.exports = env => {
         clientsClaim: true,
         skipWaiting: true,
         include: [/\.html$/, /\.js$/, /\.css$/],
-        precacheManifestFilename: 'sc-manifest.[manifestHash].js',
+        precacheManifestFilename: '/assets/sc-manifest.[manifestHash].js',
         cleanupOutdatedCaches: true,
         runtimeCaching: [
           {
@@ -95,12 +95,22 @@ module.exports = env => {
           ],
         },
         {
-          test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf|svg)(\?[a-z0-9=.]+)?$/,
+          test: /\.(woff|woff2|eot|ttf)(\?[a-z0-9=.]+)?$/,
           use: {
             loader: 'url-loader',
             options: {
               limit: 10 * 1024,
-              name: '[name].[ext]'
+              name: '/fonts/[name].[ext]'
+            }
+          }
+        },
+        {
+          test: /\.(jpe?g|png|gif|svg)(\?[a-z0-9=.]+)?$/,
+          use: {
+            loader: 'url-loader',
+            options: {
+              limit: 10 * 1024,
+              name: '/img/[name].[ext]'
             }
           }
         },
@@ -112,7 +122,19 @@ module.exports = env => {
               name: 'sc'
             }
           }
-        }
+        },
+        // {
+        //   test: /(\.woff|\.woff2)$/,
+        //   loader: 'url?name=font/[name].[ext]&limit=10240&mimetype=application/font-woff'
+        // },
+        // {
+        //   test: /\.ttf$/,
+        //   loader: 'ignore-loader'
+        // },
+        // {
+        //   test: /\.eot$/,
+        //   loader: 'ignore-loader'
+        // }
       ]
     },
     output: {
