@@ -1,18 +1,7 @@
-const webpack = require('webpack'),
-  WorkboxPlugin = require('workbox-webpack-plugin'),
-  ImageminPlugin = require("imagemin-webpack"),
-  imageminGifsicle = require("imagemin-gifsicle"),
-  imageminJpegtran = require("imagemin-jpegtran"),
-  imageminOptipng = require("imagemin-optipng"),
-  imageminSvgo = require("imagemin-svgo"),
-  MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const webpack = require('webpack');
 
 module.exports = {
-  resolve: {
-    alias: {
-      'react-dom': '@hot-loader/react-dom'
-    }
-  },
+
   mode: 'development',
   entry: [
     'webpack-dev-server/client?http://0.0.0.0:3000',
@@ -26,20 +15,6 @@ module.exports = {
       }
     }),
     new webpack.HotModuleReplacementPlugin(),
-    new WorkboxPlugin.GenerateSW({
-      swDest: __dirname + '/dist/service-worker.js',
-      clientsClaim: true,
-      skipWaiting: true,
-      include: [/\.html$/, /\.js$/, /\.css$/],
-      precacheManifestFilename: 'sc-manifest.[manifestHash].js',
-      cleanupOutdatedCaches: true,
-      runtimeCaching: [
-        {
-          urlPattern: new RegExp('/'),
-          handler: 'StaleWhileRevalidate'
-        },
-      ]
-    })
   ],
   module: {
     rules: [
