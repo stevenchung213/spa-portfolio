@@ -4,7 +4,8 @@ const webpack = require('webpack'),
   imageminGifsicle = require("imagemin-gifsicle"),
   imageminJpegtran = require("imagemin-jpegtran"),
   imageminOptipng = require("imagemin-optipng"),
-  imageminSvgo = require("imagemin-svgo");
+  imageminSvgo = require("imagemin-svgo"),
+  MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   resolve: {
@@ -17,6 +18,28 @@ module.exports = {
     'webpack-dev-server/client?http://0.0.0.0:3000',
     'webpack/hot/only-dev-server',
     __dirname + '/src/index.jsx'
+  ],
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
+      }
+    }),
+    new webpack.HotModuleReplacementPlugin(),
+    new WorkboxPlugin.GenerateSW({
+      swDest: __dirname + '/dist/service-worker.js',
+      clientsClaim: true,
+      skipWaiting: true,
+      include: [/\.html$/, /\.js$/, /\.css$/],
+      precacheManifestFilename: 'sc-manifest.[manifestHash].js',
+      cleanupOutdatedCaches: true,
+      runtimeCaching: [
+        {
+          urlPattern: new RegExp('/'),
+          handler: 'StaleWhileRevalidate'
+        },
+      ]
+    })
   ],
   module: {
     rules: [
@@ -32,7 +55,15 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: 'style-loader!css-loader'
+        use: [
+          {
+            loader: "style-loader",
+            options: {
+              hmr: true
+            }
+          },
+          "css-loader",
+        ]
       },
       {
         test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf|svg)(\?[a-z0-9=.]+)?$/,
@@ -55,48 +86,6 @@ module.exports = {
       }
     ]
   },
-  plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production')
-      }
-    }),
-    new ImageminPlugin({
-      bail: false,
-      cache: true,
-      imageminOptions: {
-        plugins: [
-          imageminGifsicle({
-            interlaced: true
-          }),
-          imageminJpegtran({
-            progressive: true
-          }),
-          imageminOptipng({
-            optimizationLevel: 5
-          }),
-          imageminSvgo({
-            removeViewBox: true
-          })
-        ]
-      }
-    }),
-    new webpack.HotModuleReplacementPlugin(),
-    new WorkboxPlugin.GenerateSW({
-      swDest: __dirname + '/dist/service-worker.js',
-      clientsClaim: true,
-      skipWaiting: true,
-      include: [/\.html$/, /\.js$/, /\.css$/],
-      precacheManifestFilename: 'sc-manifest.[manifestHash].js',
-      cleanupOutdatedCaches: true,
-      runtimeCaching: [
-        {
-          urlPattern: new RegExp('/'),
-          handler: 'StaleWhileRevalidate'
-        },
-      ]
-    })
-  ],
   output: {
     filename: 'bundle.js',
     path: __dirname + '/dist'
