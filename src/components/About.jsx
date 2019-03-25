@@ -65,18 +65,20 @@ const About = () => {
     fontSize: '1em',
     color: 'white',
     marginTop: 15,
+    marginBottom: 20,
     paddingLeft: '1em',
     paddingRight: '1em'
   };
   const blurb = {
     fontSize: '140%',
-    lineHeight: 1.5
+    lineHeight: 1.5,
   };
   const button = {
-    width: 143,
+    display: 'flex',
+    flexDirection: 'column',
     borderRadius: 50,
-    bottom: -20,
-    paddingTop: 9
+    paddingTop: 9,
+    color: 'white'
   };
 
   return (
@@ -102,7 +104,7 @@ const About = () => {
               <MDBBtn color="transparent" target="_blank" rel="noopener noreferrer"
                       href='https://s3-us-west-1.amazonaws.com/my.portfolio/steven_chung_resume.pdf'
                       style={button}>
-                <MDBIcon icon="file-pdf fa-2x" className="mr-xl-1-4"/> Résumé
+                <MDBIcon icon="file-pdf fa-2x" className="mr-xl-1-4" style={{margingBottom: '0.2em'}}/> Résumé
               </MDBBtn>
             </Swing>
           </div>
