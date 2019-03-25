@@ -2,7 +2,4 @@
 node_modules
 config
 .idea
-dist/*
-!dist/index.html
-!dist/assets/manifest.json
-!dist/assets/profile.png
+dist
