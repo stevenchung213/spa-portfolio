@@ -101,8 +101,7 @@ module.exports = env => {
       }),
       new HtmlWebpackPlugin({
         inject: false,
-        filename: 'in' +
-          'dex.html',
+        filename: 'index.html',
         template: require('html-webpack-template'),
         minify: true,
         cache: true,
@@ -124,7 +123,13 @@ module.exports = env => {
         links: ["https://fonts.googleapis.com/css?family=Montserrat"
         ],
         appMountId: 'main',
-        bodyHtmlSnippet: `<noscript>Please enable JavaScript...</noscript>`
+        bodyHtmlSnippet: `<noscript>Please enable JavaScript...</noscript>`,
+        scripts: [
+          {
+            src: '../src/assets/registerSW.js',
+            type: 'text/javascript'
+          }
+        ]
       }),
       new WebpackPwaManifest({
         inject: true,
@@ -136,7 +141,7 @@ module.exports = env => {
         start_url: 'index.html',
         theme_color: '#ffffff',
         background_color: '#000000',
-        crossorigin: null, //can be null, use-credentials or anonymous
+        crossorigin: null,
         icons: [
           {
             src: './src/assets/profile.png',
