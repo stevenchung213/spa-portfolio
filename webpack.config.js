@@ -126,7 +126,7 @@ module.exports = env => {
         bodyHtmlSnippet: `<noscript>Please enable JavaScript...</noscript>`,
         scripts: [
           {
-            src: '../src/assets/registerSW.js',
+            src: 'registerSW.js',
             type: 'text/javascript'
           }
         ]
@@ -151,12 +151,12 @@ module.exports = env => {
         ],
       }),
       new WorkboxPlugin.GenerateSW({
-        swDest: '/assets/service-worker.js',
+        swDest: 'service-worker.js',
         clientsClaim: true,
         skipWaiting: true,
-        include: [/\.html$/, /\.js$/, /\.css$/],
-        precacheManifestFilename: '/assets/sc-manifest.[manifestHash].js',
         cleanupOutdatedCaches: true,
+        include: [/\.html$/, /\.js$/, /\.css$/],
+        precacheManifestFilename: 'sc-precache-manifest.[manifestHash].js',
         runtimeCaching: [
           {
             urlPattern: new RegExp('/'),
