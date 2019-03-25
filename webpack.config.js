@@ -117,18 +117,14 @@ module.exports = env => {
             content: 'Steven Chung'
           },
           {
-            name : 'description',
+            name: 'description',
             content: 'Portfolio Site'
-          },
-          {
-            name: 'theme-color',
-            content: '#000000'
           }
         ],
         links: ["https://fonts.googleapis.com/css?family=Montserrat"
         ],
         appMountId: 'main',
-        bodyHtmlSnippet: '<noscript>Please enable JavaScript...</noscript>'
+        bodyHtmlSnippet: `<noscript>Please enable JavaScript...</noscript>`
       }),
       new WebpackPwaManifest({
         inject: true,
@@ -215,11 +211,14 @@ module.exports = env => {
           }
         },
       ]
-    },
+    }
+    ,
     output: {
       filename: '[name].bundle.js',
-      chunkFilename: '[name].bundle.js',
-      path: __dirname + '/dist'
+      chunkFilename:
+        '[name].bundle.js',
+      path:
+        __dirname + '/dist'
     }
   }
 };
