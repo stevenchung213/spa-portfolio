@@ -1,6 +1,8 @@
 const webpack = require('webpack'),
   CompressionPlugin = require('compression-webpack-plugin'),
   TerserPlugin = require('terser-webpack-plugin'),
+  HtmlWebpackPlugin = require('html-webpack-plugin'),
+  WebpackPwaManifest = require('webpack-pwa-manifest'),
   WorkboxPlugin = require('workbox-webpack-plugin'),
   ImageminPlugin = require("imagemin-webpack"),
   imageminGifsicle = require("imagemin-gifsicle"),
@@ -17,13 +19,13 @@ module.exports = env => {
 
   return {
     mode: 'development',
-    entry: __dirname + '/src/index.jsx',
+    entry: './src/index.jsx',
     optimization: {
       minimizer: [
         new TerserPlugin({
           cache: true,
           parallel: true,
-          sourceMap: false,
+          sourceMap: true,
         }),
         new OptimizeCSSAssetsPlugin({
           cssProcessor: CssNano,
@@ -36,6 +38,33 @@ module.exports = env => {
           canPrint: false
         })
       ],
+      splitChunks: {
+        chunks: 'all',
+        minSize: 25000,
+        maxSize: 0,
+        minChunks: 1,
+        maxAsyncRequests: 5,
+        maxInitialRequests: 3,
+        automaticNameDelimiter: '~',
+        name: true,
+        cacheGroups: {
+          commons: {
+            name: 'commons',
+            chunks: 'initial',
+            minChunks: 2
+          },
+          vendors: {
+            test: /[\\/]node_modules[\\/](react|react-dom|react-pose|react-pose-text|react-loadable|mdbreact)[\\/]/,
+            enforce: true,
+            priority: -10,
+          },
+          default: {
+            minChunks: 2,
+            priority: -20,
+            reuseExistingChunk: true
+          }
+        }
+      }
     },
     plugins: [
       new webpack.optimize.AggressiveMergingPlugin(),
@@ -60,7 +89,8 @@ module.exports = env => {
         }
       }),
       new MiniCssExtractPlugin({
-        filename: "styles.css"
+        filename: "[name].css",
+        chunkFilename: "[id].css"
       }),
       new CompressionPlugin({
         filename: "[path].gz[query]",
@@ -69,8 +99,58 @@ module.exports = env => {
         threshold: 8192,
         minRatio: 0.8
       }),
+      new HtmlWebpackPlugin({
+        inject: false,
+        filename: 'in' +
+          'dex.html',
+        template: require('html-webpack-template'),
+        minify: true,
+        cache: true,
+        mobile: true,
+        title: '~ WELCOME ~',
+        meta: [
+          {
+            charset: 'UTF-8'
+          },
+          {
+            name: 'author',
+            content: 'Steven Chung'
+          },
+          {
+            name : 'description',
+            content: 'Portfolio Site'
+          },
+          {
+            name: 'theme-color',
+            content: '#000000'
+          }
+        ],
+        links: ["https://fonts.googleapis.com/css?family=Montserrat"
+        ],
+        appMountId: 'main',
+        bodyHtmlSnippet: '<noscript>Please enable JavaScript...</noscript>'
+      }),
+      new WebpackPwaManifest({
+        inject: true,
+        filename: '/assets/manifest.json',
+        name: 'SC Portfolio PWA',
+        short_name: 'SC PWA',
+        description: 'My Progressive Web App Portfolio!',
+        display: 'standalone',
+        start_url: 'index.html',
+        theme_color: '#ffffff',
+        background_color: '#000000',
+        crossorigin: null, //can be null, use-credentials or anonymous
+        icons: [
+          {
+            src: './src/assets/profile.png',
+            sizes: [512],
+            destination: '/assets'
+          }
+        ],
+      }),
       new WorkboxPlugin.GenerateSW({
-        swDest: __dirname + '/dist/service-worker.js',
+        swDest: '/assets/service-worker.js',
         clientsClaim: true,
         skipWaiting: true,
         include: [/\.html$/, /\.js$/, /\.css$/],
@@ -134,23 +214,11 @@ module.exports = env => {
             }
           }
         },
-        // {
-        //   test: /(\.woff|\.woff2)$/,
-        //   loader: 'url?name=font/[name].[ext]&limit=10240&mimetype=application/font-woff'
-        // },
-        // {
-        //   test: /\.ttf$/,
-        //   loader: 'ignore-loader'
-        // },
-        // {
-        //   test: /\.eot$/,
-        //   loader: 'ignore-loader'
-        // }
       ]
     },
     output: {
-      filename: '[name]_bundle.js',
-      chunkFilename: '[id]_bundle.js',
+      filename: '[name].bundle.js',
+      chunkFilename: '[name].bundle.js',
       path: __dirname + '/dist'
     }
   }
