@@ -101,7 +101,7 @@ export default class Modal extends Component {
     this.props.project === 'Su Casa' ? project = sucasa :
       this.props.project === 'Zillwoah!' ? project = zillwoah :
         this.props.project === 'My Map Pins' ? project = mymappins :
-          this.props.project === 'Portfolio' ? project = portfolio : project = repofecther;
+          this.props.project === 'Personal Site' ? project = portfolio : project = repofecther;
 
     const header = {
       display: 'flex',
