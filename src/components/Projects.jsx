@@ -4,17 +4,10 @@ import {Fade, Slide} from 'react-reveal';
 import Zoom from 'react-reveal/Zoom';
 import posed from "react-pose";
 import SplitText from "react-pose-text";
-import Loadable from 'react-loadable';
-import ReactLoading from './Loading.jsx';
+import Modal from './Modal.jsx';
+
 import {DataContext} from "../providers/Data.jsx";
 
-
-const LoadableModal = Loadable({
-  loader: () => import(`./Modal.jsx`),
-  loading() {
-    return <ReactLoading/>
-  }
-});
 
 
 const Projects = () => {
@@ -107,7 +100,7 @@ const Projects = () => {
                                     </h5>
                                   </Slide>
                                   <Slide bottom>
-                                    <LoadableModal project={project.name}/>
+                                    <Modal project={project.name}/>
                                   </Slide>
                                 </div>
                               </div>

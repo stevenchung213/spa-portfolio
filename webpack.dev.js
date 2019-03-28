@@ -1,4 +1,5 @@
-const webpack = require('webpack');
+const webpack = require('webpack'),
+  HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 
@@ -15,6 +16,32 @@ module.exports = {
       }
     }),
     new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+      inject: false,
+      filename: 'index.html',
+      template: require('html-webpack-template'),
+      minify: true,
+      cache: true,
+      mobile: true,
+      title: '~ WELCOME ~',
+      meta: [
+        {
+          charset: 'UTF-8'
+        },
+        {
+          name: 'author',
+          content: 'Steven Chung'
+        },
+        {
+          name: 'description',
+          content: 'Portfolio Site'
+        }
+      ],
+      links: ["https://fonts.googleapis.com/css?family=Montserrat"
+      ],
+      appMountId: 'main',
+      bodyHtmlSnippet: `<noscript>Please enable JavaScript...</noscript>`
+    })
   ],
   module: {
     rules: [

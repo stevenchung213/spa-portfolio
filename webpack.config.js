@@ -37,34 +37,7 @@ module.exports = env => {
           },
           canPrint: false
         })
-      ],
-      splitChunks: {
-        chunks: 'all',
-        minSize: 25000,
-        maxSize: 0,
-        minChunks: 1,
-        maxAsyncRequests: 5,
-        maxInitialRequests: 3,
-        automaticNameDelimiter: '~',
-        name: true,
-        cacheGroups: {
-          commons: {
-            name: 'commons',
-            chunks: 'initial',
-            minChunks: 2
-          },
-          vendors: {
-            test: /[\\/]node_modules[\\/](react|react-dom|react-pose|react-pose-text|react-loadable|mdbreact)[\\/]/,
-            enforce: true,
-            priority: -10,
-          },
-          default: {
-            minChunks: 2,
-            priority: -20,
-            reuseExistingChunk: true
-          }
-        }
-      }
+      ]
     },
     plugins: [
       new webpack.optimize.AggressiveMergingPlugin(),
@@ -206,22 +179,11 @@ module.exports = env => {
             }
           }
         },
-        {
-          test: /\.bundle\.js$/,
-          use: {
-            loader: 'bundle-loader',
-            options: {
-              name: 'sc'
-            }
-          }
-        },
       ]
     }
     ,
     output: {
       filename: '[name].bundle.js',
-      chunkFilename:
-        '[name].bundle.js',
       path:
         __dirname + '/dist'
     }
