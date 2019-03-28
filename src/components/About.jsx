@@ -104,7 +104,7 @@ const About = () => {
               <MDBBtn color="transparent" target="_blank" rel="noopener noreferrer"
                       href='https://s3-us-west-1.amazonaws.com/my.portfolio/steven_chung_resume.pdf'
                       style={button}>
-                <MDBIcon icon="file-pdf fa-2x" className="mr-xl-1-4" style={{marginBottom: '0.2em'}}/> Résumé
+                <MDBIcon icon="file-pdf fa-2x" className="mr-xl-1-4" style={{margingBottom: '0.2em'}}/> Résumé
               </MDBBtn>
             </Swing>
           </div>
