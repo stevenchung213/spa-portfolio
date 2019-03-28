@@ -150,20 +150,20 @@ module.exports = env => {
           }
         ],
       }),
-      new WorkboxPlugin.GenerateSW({
-        swDest: 'service-worker.js',
-        clientsClaim: true,
-        skipWaiting: true,
-        cleanupOutdatedCaches: true,
-        include: [/\.html$/, /\.js$/, /\.css$/],
-        precacheManifestFilename: 'sc-precache-manifest.[manifestHash].js',
-        runtimeCaching: [
-          {
-            urlPattern: new RegExp('/'),
-            handler: 'StaleWhileRevalidate'
-          },
-        ]
-      })
+      // new WorkboxPlugin.GenerateSW({
+      //   swDest: 'service-worker.js',
+      //   clientsClaim: true,
+      //   skipWaiting: true,
+      //   cleanupOutdatedCaches: true,
+      //   include: [/\.html$/, /\.js$/, /\.css$/],
+      //   precacheManifestFilename: 'sc-precache-manifest.[manifestHash].js',
+      //   runtimeCaching: [
+      //     {
+      //       urlPattern: new RegExp('/'),
+      //       handler: 'StaleWhileRevalidate'
+      //     },
+      //   ]
+      // })
     ],
     module: {
       rules: [

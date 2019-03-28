@@ -72,7 +72,7 @@ export default class Modal extends Component {
         " user's personalized note along with assigned coordinates using MongoDB",
       href: 'https://github.com/stevenchung213/mvp'
     };
-    const repofecther = {
+    const repofetcher = {
       name: 'Github Repo Fetcher',
       caption: 'Retrieve all repos of a Github user',
       src: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/repofetcher.png',
@@ -101,7 +101,7 @@ export default class Modal extends Component {
     this.props.project === 'Su Casa' ? project = sucasa :
       this.props.project === 'Zillwoah!' ? project = zillwoah :
         this.props.project === 'My Map Pins' ? project = mymappins :
-          this.props.project === 'Personal Site' ? project = portfolio : project = repofecther;
+          this.props.project === 'Personal Site' ? project = portfolio : project = repofetcher;
 
     const header = {
       display: 'flex',
