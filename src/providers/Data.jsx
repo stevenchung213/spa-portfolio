@@ -45,7 +45,7 @@ export default class DataProvider extends Component {
           'Created a custom script which randomly generated a csv file with 10 million mock mortgage records for testing purposes*' +
           'Utilized a csv import method to efficiently inject those 10 million records into the database in under ten minutes *' +
           'Reduced database select query times to less than half a millisecond by indexing the table *' +
-          'Deployed onto AWS EC2 cloud-computing platform for quick scalability in case computational load changes' + '*Horizontally' +
+          'Deployed onto AWS EC2 cloud-computing platform for quick scalability in case of computational load changes' + '*Horizontally' +
           ' scaled across four t2.micro instances using NGiNX load balancing to handle up to 15,000 requests/second for large scale' +
           ' network traffic testing *Adhered to Agile methodologies using GitHub\'s version control system to submit pull requests and administer peer to peer code reviews',
         href: 'https://github.com/SDC-8/steve'
