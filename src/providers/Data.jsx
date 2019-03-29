@@ -13,7 +13,7 @@ export default class DataProvider extends Component {
       github: 'https://www.github.com/stevenchung213',
       gmail: 'mailto:stevenchung.213@gmail.com',
       linkedin: 'https://www.linkedin.com/in/stevenchung-213',
-      resume: 'https://s3-us-west-1.amazonaws.com/my.portfolio/steven_chung_resume.pdf'
+      resume: 'https://s3-us-west-1.amazonaws.com/my.portfolio/my_resume.pdf'
     },
     profileImg: 'https://s3-us-west-1.amazonaws.com/my.portfolio/png/profile.png',
     projects: {
