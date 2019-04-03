@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import {MDBBtn, MDBDropdownMenu} from 'mdbreact';
+import {MDBBtn} from 'mdbreact';
 import ResponsiveModal from 'react-responsive-modal';
 import {Fade} from 'react-reveal';
 import posed from 'react-pose';
